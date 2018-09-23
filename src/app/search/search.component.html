@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-13">
+        <form (ngSubmit)='findUser()' #userForm = 'ngForm' class="form-inline" >
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="username" [(ngModel)] = "username" name="username">
+                <button type="Submit" class="btn btn-success"> Search</button>
+                <span id="helpBlock" class="help-block">Enter a github username.</span>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+<div class="row" *ngIf="user">
+    <div class="row">
+        <div class="row">
+            <div class="col-sm-3">
+                <img src="{{user.imageLink}}" class="img-rounded" alt="User Image" height="250">
+            </div>
+            <div class="col-sm-9">
+                <h1 class="details">{{user.user}}</h1>
+                <p class="details">Username: {{user.login}}</p>
+                <p class="details">{{user.bio}}</p>
+                <p class="details"><a href="{{user.link}}" class="btn btn-success">View on github</a></p>
+            </div>
+        </div>
+        <div class="row">
+            <h3>Repositories</h3>
+            <div class="row" *ngFor="let repo of repos">
+                <div class="col-sm-12">
+                    <p>{{repo.name}}</p>
+                    <p>{{repo.description}}</p>
+                    <a href="{{repo.html_url}}" class="btn btn-sm btn-info">View this project</a>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
