@@ -1,0 +1,15 @@
+h1{
+    padding-top: 0;
+    margin-top: 0;
+    padding-left: 0;
+    margin-left: 0;
+    font-weight: bold;
+}
+.details {
+    margin-left: 20px;
+}
+hr {
+    height: 1px;
+    border: 0;
+    box-shadow: inset 0 12px 12px -12px rgba(0, 0, 0, 0.5);
+}
