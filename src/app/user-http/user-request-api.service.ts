@@ -1,42 +1,132 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Http, Headers } from '@angular/http';
 import { environment } from '../../environments/environment';
-import { User } from '../user'
+import { User } from '../user';
+import { Repository } from '../repository';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserRequestApiService {
 
-    user: User;
-    private userName: string;
+    public userName: string;
     private clientId = "abeb90549ecafe81772b";
     private clientSecret = "3b0ba14362f0ffcbde5bac457f82c620daf8b180";
     private endpoint: string = "/users/";
+    public searchTerm: string = "calculator";
+    public user: User;
+    public repository: Repository;
+    public reposArray: any = [];
 
-    constructor(private http:HttpClient) {
-        this.userName = "maxwellkimutai"
-        this.user = new User("","",0);
+    constructor(private http:Http) {
+        this.userName = "maxwellkimutai";
+        this.user= new User("","","","","");
+        this.repository=  new Repository("","","");
+    }
+
+    getMyUser () {
+        let promise = new Promise ((resolve, reject) => {
+            this.http.get(environment.apiUrl + this.endpoint + "maxwellkimutai" + "?client_id=" + this.clientId + "&client_secret=" + this.clientSecret).toPromise().then(
+                res => {
+                    this.user.user = res.json().name;
+                    this.user.login = res.json().login;
+                    this.user.bio = res.json().bio;
+                    this.user.link = res.json().html_url;
+                    this.user.imageLink = res.json().avatar_url;
+                    resolve();
+                }, error => {
+                    reject(error);
+                }
+            );
+        });
+        return promise;
     }
 
     getUser() {
-        interface ApiResponse{
-            login:string,
-            html_url:string,
-            repos:number
-        }
-        let promise = new Promise((resolve,reject)=> {
-            this.http.get(environment.apiUrl + this.endpoint + this.userName + "?client_id=" + this.clientId + "&client_secret=" + this.clientSecret).toPromise().then(response=>{
-                // this.user.user = response.login;
-                // this.user.link = response.html_url;
-                // this.user.repos = response.public_repos;
-                console.log(response);
-                resolve();
-            },error=>{
-
-            }
-            )
-        })
+        let promise = new Promise ((resolve, reject) => {
+            this.http.get(environment.apiUrl + this.endpoint + this.userName + "?client_id=" + this.clientId + "&client_secret=" + this.clientSecret).toPromise().then(
+                res => {
+                    this.user.user = res.json().name;
+                    this.user.login = res.json().login;
+                    this.user.bio = res.json().bio;
+                    this.user.link = res.json().html_url;
+                    this.user.imageLink = res.json().avatar_url;
+                    resolve();
+                }, error => {
+                    reject(error);
+                }
+            );
+        });
         return promise;
     }
+
+    getMyRepos() {
+        let promise = new Promise((resolve, reject) => {
+            this.http.get(environment.apiUrl + this.endpoint + "maxwellkimutai" + "/repos?client_id=" + this.clientId + "&client_secret=" + this.clientSecret).toPromise().then(
+                res => {
+                    for (let repo of res.json()){
+                        this.repository.name = repo.name;
+                        this.repository.description = repo.description;
+                        this.repository.repoLink = repo.html_url;
+                        this.reposArray.push(this.repository);
+                        this.repository=  new Repository("","","");
+                        resolve();
+                    }
+                }, error => {
+                    reject(error);
+                }
+            );
+        });
+        return promise;
+    }
+
+    getRepos() {
+        this.reposArray = [];
+        let promise = new Promise((resolve, reject) => {
+            this.http.get(environment.apiUrl + this.endpoint + this.userName + "/repos?client_id=" + this.clientId + "&client_secret=" + this.clientSecret).toPromise().then(
+                res => {
+                    for (let repo of res.json()){
+                        this.repository.name = repo.name;
+                        this.repository.description = repo.description;
+                        this.repository.repoLink = repo.html_url;
+                        this.reposArray.push(this.repository);
+                        this.repository=  new Repository("","","");
+                        resolve();
+                    }
+                }, error => {
+                    reject(error);
+                }
+            );
+        });
+        return promise;
+    }
+
+    searchRepos() {
+        this.reposArray = [];
+        let promise = new Promise((resolve, reject) => {
+            this.http.get(environment.apiUrl + "/search/repositories?q=" + this.searchTerm + "in:name").toPromise().then(
+                res => {
+                    for (let repo of res.json().items){
+                        this.repository.name = repo.name;
+                        this.repository.description = repo.description;
+                        this.repository.repoLink = repo.html_url;
+                        this.reposArray.push(this.repository);
+                        this.repository=  new Repository("","","");
+                        resolve();
+                    }
+                }, error => {
+                    reject(error);
+                }
+            )
+        })
+    }
+
+    updateSearchTerm(searchTerm:string) {
+        this.searchTerm = searchTerm;
+    }
+
+    updateProfile(username:string) {
+        this.userName = username;
+    }
+
 }
