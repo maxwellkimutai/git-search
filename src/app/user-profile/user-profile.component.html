@@ -15,7 +15,7 @@
             <h3>Repositories</h3>
             <div class="row" *ngFor="let repo of repos">
                 <div class="col-sm-12">
-                    <h4 appChangecolor>{{repo.name}}</h4>
+                    <h4 appChangecolor>{{repo.name|bolden}}</h4>
                     <p>{{repo.description}}</p>
                     <a href="{{repo.repoLink}}" class="btn btn-sm btn-info">View this project</a>
                     <hr>

@@ -11,6 +11,7 @@ import { SearchComponent } from './search/search.component';
 import { SearchReposComponent } from './search-repos/search-repos.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ChangecolorDirective } from './changecolor.directive';
+import { BoldenPipe } from './bolden.pipe';
 
 // Defining routes
 const routes:Routes=[
@@ -28,7 +29,8 @@ const routes:Routes=[
     SearchComponent,
     SearchReposComponent,
     NotFoundComponent,
-    ChangecolorDirective
+    ChangecolorDirective,
+    BoldenPipe
   ],
   imports: [
     BrowserModule,
