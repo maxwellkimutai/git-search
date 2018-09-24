@@ -9,7 +9,6 @@ import { User } from '../user';
   styleUrls: ['./search.component.css']
 })
 export class SearchComponent implements OnInit {
-    profile: any[];
     repos: any[];
     username: string;
     user: User;
@@ -22,12 +21,9 @@ export class SearchComponent implements OnInit {
           this.userRequestService.updateProfile(this.username);
           this.userRequestService.getUser();
           this.user = this.userRequestService.user;
-          console.log(this.user);
 
-          this.userRequestService.getRepos().subscribe(data => {
-              console.log(data);
-              this.repos = data;
-          });
+          this.userRequestService.getRepos();
+          this.repos = this.userRequestService.reposArray;
       }
 
   ngOnInit() {
