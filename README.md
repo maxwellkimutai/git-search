@@ -1,27 +1,39 @@
-# Gitsearch
+# Git Search
+#### This is an application that allows users to search for github users based on their username and also allows users to search for github repositories, September 24, 2018
+#### By **Maxwell Kimutai**
+## Description
+This application allows users to search for github users and view their repositories. They can click the buttons provided to open the user's profile and repositories on github. The user can also search for repositories using a search term.
+## BDD
+The program provides an input to search for a user
+* Example input: maxwellkimutai
+* Example output: maxwellkimutai's profile and repositories
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.1.5.
+The program provides an input to search for a repository
+* Example input: calculator
+* Example output: displays all the repositories with the string calculator in the repository's name
 
-## Development server
+##Presrequisites
+* Angular
+* Node.js
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## Setup/Installation Requirements
+* https://github.com/maxwellkimutai/git-search
+* download the zip file
+* unzip it on the folder that has angular installed
+* navigate to the unzipped folder on your terminal and run the commmand ng serve
+* open your browser and type localhost/4200 as the url
+## Known Bugs
+None
+## Technologies used
+* HTML
+* CSS
+* JavaScript
+* Angular
+* Bootstrap
+## Link To gh-pages
+https://maxwellkimutai.github.io/git-search
+## Support and contact details
+Contact Maxwell Kimutai on +254713510682
+### License
+MIT
+Copyright (c) 2018 **Maxwell Kimutai**
