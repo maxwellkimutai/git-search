@@ -15,7 +15,7 @@ export class SearchReposComponent implements OnInit {
 
     constructor(private searchApi:UserRequestApiService) { }
 
-    findRepos (searchTerm:string) {
+    findRepos () {
         this.searchApi.updateSearchTerm(this.searchTerm);
         this.searchApi.searchRepos();
         this.repos = this.searchApi.reposArray;
