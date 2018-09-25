@@ -12,7 +12,7 @@ The program provides an input to search for a repository
 * Example input: calculator
 * Example output: displays all the repositories with the string calculator in the repository's name
 
-##Presrequisites
+## Presrequisites
 * Angular
 * Node.js
 
